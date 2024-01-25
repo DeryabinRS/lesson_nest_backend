@@ -6,12 +6,13 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from '../user/user.module';
 
-import config from '../config';
+import config from '../../config';
 import { User } from '../user/models/user.model';
+import { AuthModule } from '../auth/auth.module';
+import { TokenModule } from '../token/token.module';
 
 @Module({
     imports: [
-        UserModule,
         ConfigModule.forRoot({
             isGlobal: true,
             load: [config],
@@ -31,6 +32,9 @@ import { User } from '../user/models/user.model';
                 models: [User],
             }),
         }),
+        UserModule,
+        AuthModule,
+        TokenModule,
     ],
     controllers: [AppController],
     providers: [AppService],
