@@ -31,10 +31,15 @@ export class AuthService {
         if (!validatePassword)
             throw new BadRequestException(APP_ERROR.USER.BAD_LOGIN);
 
-        const token = await this.tikenService.generateJwtToken({
-            email: dto.email,
-        });
+        const userData = {
+            id: user.id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+        };
 
-        return { ...user, token };
+        const token = await this.tikenService.generateJwtToken(userData);
+
+        return { ...userData, token };
     }
 }

@@ -18,3 +18,17 @@ export class CreateUserDto {
     @IsString()
     password: string;
 }
+
+export class UpdateUserDto {
+    @ApiProperty()
+    @IsString()
+    firstName: string;
+
+    @ApiProperty()
+    @IsString()
+    lastName: string;
+
+    @ApiProperty()
+    @IsEmail()
+    email: string;
+}
